@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>나의 꿈 영어 글쓰기</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Jua&family=Gowun+Dodum&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FFF8EE; --card:#fff; --ink:#4A3F35; --muted:#8E8072; --line:#F3DCC8;
+  --coral:#FF8C69; --coral-d:#E8714F; --lemon:#FFE59A; --mint:#7FD6B0; --mint-d:#5DBB93;
+  --sky:#8EC5FF; --sky-d:#6AA9EC; --soft:#FFF1E6; --soft-d:#F2D8C3; --ok:#E3F8EE;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--bg);background-image:radial-gradient(#FFE3CC 1.2px,transparent 1.2px);background-size:22px 22px;
+  font-family:'Gowun Dodum','Apple SD Gothic Neo','Malgun Gothic',sans-serif;color:var(--ink);font-size:16px;line-height:1.55;min-height:100vh}
+h1,h2,h3,.btn,.jua{font-family:'Jua','Apple SD Gothic Neo','Malgun Gothic',sans-serif;font-weight:400}
+h2{margin:.2em 0 .4em;font-size:1.5rem}
+h3{margin:.2em 0 .5em;font-size:1.2rem}
+.muted{color:var(--muted)}
+.hidden{display:none!important}
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:9999}
+.wrap{max-width:980px;margin:0 auto;padding:16px}
+.card{background:var(--card);border-radius:24px;padding:22px;margin:14px 0;box-shadow:0 5px 0 rgba(232,170,130,.18),0 12px 30px rgba(255,150,100,.10);border:2px solid #FFEBDD}
+header{text-align:center;padding:10px 0 0}
+.mascot{font-size:3rem;animation:bob 2.6s ease-in-out infinite;display:inline-block}
+@keyframes bob{50%{transform:translateY(-7px) rotate(-4deg)}}
+.title{font-size:1.9rem;margin:.1em 0}
+.title span{color:var(--coral)}
+.sub{color:var(--muted);margin:.2em 0 0}
+/* stepper */
+.stepper{display:flex;justify-content:center;gap:8px;margin:14px 0 4px;flex-wrap:wrap}
+.stepper div{display:flex;align-items:center;gap:6px;background:#fff;border:2px solid #FFE1CE;border-radius:999px;padding:6px 14px;font-family:'Jua';color:var(--muted)}
+.stepper div.on{background:var(--coral);border-color:var(--coral);color:#fff;box-shadow:0 4px 0 var(--coral-d)}
+.stepper div.done{background:var(--ok);border-color:var(--mint);color:#2E8A60}
+/* buttons */
+.btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;align-items:center}
+.btns.end{justify-content:flex-end}
+.btn{border:none;border-radius:999px;padding:12px 22px;font-size:1.05rem;cursor:pointer;background:var(--coral);color:#fff;box-shadow:0 4px 0 var(--coral-d);transition:transform .08s,box-shadow .08s,filter .15s}
+.btn:hover{filter:brightness(1.04)}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 var(--coral-d)}
+.btn.soft{background:var(--soft);color:var(--ink);box-shadow:0 4px 0 var(--soft-d)}
+.btn.mint{background:var(--mint);box-shadow:0 4px 0 var(--mint-d)}
+.btn.sky{background:var(--sky);box-shadow:0 4px 0 var(--sky-d)}
+.btn.big{font-size:1.2rem;padding:14px 26px}
+.mini{border:1.5px solid var(--soft-d);background:#fff;border-radius:999px;padding:4px 11px;font:inherit;font-size:.85rem;cursor:pointer;color:var(--ink)}
+/* forms */
+label{display:block}
+input{width:100%;font:inherit;color:var(--ink);background:#FFFCF8;border:2px solid var(--line);border-radius:14px;padding:11px 13px;outline:none;transition:border .15s,box-shadow .15s}
+input:focus{border-color:var(--coral);box-shadow:0 0 0 4px rgba(255,140,105,.15)}
+.field{margin:16px 0}
+.field>label{font-weight:700;margin-bottom:6px}
+.field small{display:block;color:var(--muted);margin-top:5px}
+em.req,em.opt{font-style:normal;font-size:.75rem;border-radius:999px;padding:1px 8px;margin-left:6px;vertical-align:middle}
+em.req{background:#FFE0D6;color:#C9573A}
+em.opt{background:#E7F4FF;color:#3C7FC2}
+.row3{display:grid;grid-template-columns:1fr 1fr 1fr 2fr;gap:8px}
+.row3 label{font-size:.9rem;color:var(--muted)}
+.to-input{display:flex;align-items:center;gap:8px}
+.to-input span{font-family:'Jua';font-size:1.2rem;background:var(--lemon);border-radius:12px;padding:8px 12px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.chip{border:1.5px dashed var(--soft-d);background:#fff;border-radius:999px;padding:4px 11px;font:inherit;font-size:.86rem;cursor:pointer;color:var(--ink)}
+.chip:hover{background:var(--soft);border-style:solid}
+.live{margin-top:14px;background:#FFFBF2;border:2px dashed var(--lemon);border-radius:16px;padding:12px 14px;min-height:48px}
+.live b{font-family:'Jua';font-weight:400;font-size:1.15rem}
+.tip{margin-top:6px;color:#B0603F;font-size:.92rem}
+.box-info{background:#FFFBF2;border-radius:16px;padding:10px 14px;font-size:.92rem;color:var(--muted);margin-top:8px}
+/* essay */
+.guide{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.guide div{background:#FFFCF8;border:2px dashed #FFE1CE;border-radius:16px;padding:12px;font-size:.95rem}
+.guide b{font-family:'Jua';font-weight:400;font-size:1.05rem;display:block}
+.essay-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:16px;align-items:start}
+.step{background:#FFFCF8;border:2px solid #FFEBDD;border-radius:20px;padding:14px 16px;margin-bottom:12px}
+.step .sh{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.step .num{width:30px;height:30px;border-radius:50%;background:var(--coral);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-family:'Jua'}
+.step .num.adv{background:#B497FF}
+.step .t{font-family:'Jua';font-size:1.1rem}
+.expr{display:inline-block;background:var(--lemon);border-radius:10px;padding:2px 10px;font-family:'Jua';margin:6px 0 2px}
+.expr.adv{background:#E6DCFF}
+.ex{font-size:.88rem;color:var(--muted)}
+.inline-inputs{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:6px}
+.inline-inputs span{font-family:'Jua'}
+.inline-inputs input{flex:1;min-width:140px}
+.preview{position:sticky;top:12px}
+.paper{background:#FFFEF8;border:2px solid #FFE9A8;border-radius:20px;padding:18px;min-height:170px;font-size:1.08rem;line-height:1.9;
+  background-image:repeating-linear-gradient(transparent,transparent 31px,#FFF0C2 31px,#FFF0C2 32px);background-position:0 12px;white-space:pre-wrap;word-break:break-word}
+.tips div{background:#FFF4EC;border-radius:12px;padding:6px 10px;margin-top:6px;font-size:.92rem}
+.tips div.good{background:var(--ok)}
+.submit-guide{background:#FFF3C4;border:2px solid #FFE08A;border-radius:18px;padding:14px 16px;margin:12px auto 4px;max-width:720px;font-size:1.05rem;line-height:1.6}
+.submit-guide span{display:block;font-size:.9rem;color:var(--muted);margin-top:4px}
+.paper.final{-webkit-user-select:all;user-select:all;cursor:text}
+.submit-box{background:#EAF7F1;border:2px solid #BFE8D4;border-radius:18px;padding:14px 16px;margin:14px auto 4px;max-width:720px}
+.submit-box.sent{background:#E3F8EE}
+.sentence-big{font-family:'Jua';font-size:1.2rem;background:#fff;border-radius:12px;padding:8px 12px;margin:8px 0;display:inline-block}
+.t-panel ol{padding-left:22px}.t-panel li{margin:9px 0}
+.code{font-family:monospace;background:#FFF4EC;border-radius:6px;padding:1px 6px;font-size:.88rem}
+.map{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:.92rem;background:#FFFCF8;border-radius:12px;padding:10px 14px;margin-top:8px}
+.ok-txt{color:#2E8A60}.no-txt{color:#C9573A}
+footer button{border:none;background:none;color:var(--muted);text-decoration:underline;cursor:pointer;font:inherit;font-size:.82rem}
+.check{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:.92rem;cursor:pointer}
+.check input{width:auto}
+/* done */
+.done{text-align:center}
+.done .paper{text-align:left;margin:14px auto;max-width:720px}
+.badge-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:6px}
+.badge{background:var(--soft);border-radius:999px;padding:4px 12px;font-size:.9rem}
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(30px);background:#4A3F35;color:#fff;border-radius:999px;padding:11px 20px;opacity:0;transition:all .3s;z-index:2000;max-width:92vw;text-align:center;pointer-events:none}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+footer{text-align:center;color:var(--muted);font-size:.82rem;padding:16px 0 30px}
+@media (max-width:760px){
+  .essay-grid{grid-template-columns:1fr}
+  .preview{position:static}
+  .row3{grid-template-columns:1fr 1fr 1fr}
+  .row3 label:last-child{grid-column:1/-1}
+  .card{padding:16px;border-radius:20px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<canvas id="confetti"></canvas>
+<div class="wrap">
+  <header>
+    <div class="mascot">🌱</div>
+    <h1 class="title">나의 꿈 <span>영어 글쓰기</span></h1>
+    <p class="sub">천천히, 편하게 써 봐요. 꿈은 언제든 바뀌어도 괜찮아요 💛</p>
+    <div class="stepper" id="stepper"></div>
+  </header>
+  <main id="view"></main>
+  <footer>✍️ 쓴 내용은 이 기기에만 잠시 저장돼요 · <button onclick="openTeacher()">👩‍🏫 선생님 설정</button></footer>
+</div>
+<div id="toast"></div>
+
+<script>
+/* ==== 선생님 구글 설문지 연결 정보 (선생님 설정 화면에서 자동으로 들어가요) ==== */
+/*FORM_CONFIG_START*/const EMBED_FORM=null;/*FORM_CONFIG_END*/
+const PRISTINE='<!doctype html>\n'+document.documentElement.outerHTML;
+/* ===== 데이터 ===== */
+const JOBS=[['a teacher','선생님'],['a doctor','의사'],['a nurse','간호사'],['a vet','수의사'],['a chef','요리사'],['a baker','제빵사'],['a singer','가수'],['a dancer','댄서'],['an artist','화가'],['a designer','디자이너'],['a writer','작가'],['a YouTuber','유튜버'],['a programmer','프로그래머'],['an engineer','엔지니어'],['a scientist','과학자'],['a pilot','비행기 조종사'],['a police officer','경찰관'],['a firefighter','소방관'],['a soccer player','축구 선수'],['a game designer','게임 디자이너']];
+const PURPOSES=[['help sick people','아픈 사람들을 돕기 위해서'],['help sick animals','아픈 동물들을 돕기 위해서'],['teach children','아이들을 가르치기 위해서'],['make people happy','사람들을 행복하게 하기 위해서'],['make delicious food','맛있는 음식을 만들기 위해서'],['protect people','사람들을 지키기 위해서'],['make the world better','세상을 더 좋게 만들기 위해서'],['make fun games','재미있는 게임을 만들기 위해서'],['travel around the world','세계를 여행하기 위해서'],['give people hope','사람들에게 희망을 주기 위해서']];
+const INTERESTS=['cooking','drawing','animals','music','sports','science','computers','helping people','reading books','making videos','dancing','games'];
+const PLANS=['practice cooking every day','study science hard','read many books','exercise every day','study English hard','practice drawing every day','learn computer programming','practice singing every day'];
+const PLANS2=['watch videos about my dream job','ask my teacher for advice','join a club','keep a dream diary','help my friends','never give up'];
+const CLOSES=['I will do my best!','I believe my dream will come true!','Please cheer for me!','Thank you for reading!'];
+const KEY='dreamWriting.v1';
+
+/* ===== 상태 ===== */
+let D={step:1,cls:'',num:'',krName:'',dreamEn:'',dreamKo:'',purposeEn:'',purposeKo:'',name:'',interest:'',plan1:'',plan2:'',closing:'',withInfo:true};
+try{Object.assign(D,JSON.parse(localStorage.getItem(KEY)||'{}'))}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(D))}catch(e){}}
+
+/* ===== 도우미 ===== */
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const clean=x=>String(x||'').trim().replace(/\s+/g,' ').replace(/[.!?]+$/,'');
+const cleanTo=x=>clean(x).replace(/^to\s+/i,'');
+const hasHangul=x=>/[ㄱ-ㅎㅏ-ㅣ가-힣]/.test(x||'');
+const hasArticle=x=>/^(a|an|the)\s/i.test(String(x||'').trim());
+const firstWord=x=>String(x||'').trim().split(/\s+/)[0]||'';
+const ingEd=x=>/(ing|ed)$/i.test(firstWord(x))&&!/^(bring|sing|ring|thing)$/i.test(firstWord(x));
+let toastT;function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('show'),2500)}
+
+/* ===== 효과 ===== */
+let AC=null;
+function tone(f,t0,d){try{AC=AC||new (window.AudioContext||window.webkitAudioContext)();const o=AC.createOscillator(),g=AC.createGain(),t=AC.currentTime+t0;
+  o.type='triangle';o.frequency.value=f;g.gain.setValueAtTime(.0001,t);g.gain.linearRampToValueAtTime(.16,t+.02);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(AC.destination);o.start(t);o.stop(t+d+.05)}catch(e){}}
+const fanfare=()=>[523.25,659.25,783.99,1046.5,783.99,1046.5].forEach((f,i)=>tone(f,i*.11,.3));
+const cv=$('#confetti'),cx=cv.getContext('2d');let parts=[],raf=null;
+function sizeCv(){const r=devicePixelRatio||1;cv.width=innerWidth*r;cv.height=innerHeight*r;cv.style.width=innerWidth+'px';cv.style.height=innerHeight+'px';cx.setTransform(r,0,0,r,0,0)}
+sizeCv();addEventListener('resize',sizeCv);
+function burst(n,x,y){const C=['#FF8C69','#FFD166','#7FD6B0','#8EC5FF','#CDB9FF','#FFB4C6'];
+  for(let i=0;i<n;i++)parts.push({x,y,vx:(Math.random()-.5)*13,vy:-Math.random()*13-4,s:6+Math.random()*6,c:C[i%6],r:Math.random()*6,vr:(Math.random()-.5)*.35,l:0});
+  if(!raf)raf=requestAnimationFrame(tick)}
+function celebrate(){burst(110,innerWidth*.15,innerHeight*.7);burst(110,innerWidth*.85,innerHeight*.7);setTimeout(()=>burst(120,innerWidth/2,innerHeight*.35),250)}
+function tick(){cx.clearRect(0,0,innerWidth,innerHeight);
+  parts.forEach(p=>{p.vy+=.33;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;p.l++;cx.save();cx.translate(p.x,p.y);cx.rotate(p.r);cx.globalAlpha=Math.max(0,1-p.l/220);cx.fillStyle=p.c;cx.fillRect(-p.s/2,-p.s/4,p.s,p.s/2);cx.restore()});
+  parts=parts.filter(p=>p.y<innerHeight+40&&p.l<220);raf=parts.length?requestAnimationFrame(tick):(cx.clearRect(0,0,innerWidth,innerHeight),null)}
+function speak(t){try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='en-US';u.rate=.9;speechSynthesis.speak(u)}catch(e){toast('이 기기는 읽어주기를 지원하지 않아요')}}
+
+/* ===== 문단 만들기 ===== */
+function buildParagraph(){
+  const out=['Hello!'];
+  if(clean(D.name))out.push(`My name is ${clean(D.name)}.`);
+  if(clean(D.interest))out.push(`I am interested in ${clean(D.interest)}.`);
+  const dream=clean(D.dreamEn),pur=cleanTo(D.purposeEn);
+  if(dream&&pur)out.push(`I want to become ${dream} to ${pur}.`);
+  if(dream&&clean(D.plan1))out.push(`To become ${dream}, I will ${cleanTo(D.plan1)}.`);
+  if(clean(D.plan2))out.push(`I will also ${cleanTo(D.plan2)}.`);
+  const cl=String(D.closing||'').trim();if(cl)out.push(/[.!?]$/.test(cl)?cl:cl+'.');
+  return out.length>1?out.join(' '):'';
+}
+function josa(w,a,b){const c=String(w||'').trim().slice(-1).charCodeAt(0);if(c<0xAC00||c>0xD7A3)return a+'('+b+')';return (c-0xAC00)%28?a:b}
+function koSentence(){const d=String(D.dreamKo||'').trim(),p=String(D.purposeKo||'').trim();if(!d&&!p)return '';
+  return `${p||'___'} ${d||'___'}${d?josa(d,'이','가'):'이(가)'} 되고 싶다.`}
+function enSentence(){return `I want to become ${clean(D.dreamEn)} to ${cleanTo(D.purposeEn)}.`}
+function infoLine(){
+  const p=[];if(D.cls)p.push(D.cls+'반');if(D.num)p.push(D.num+'번');if(clean(D.krName))p.push(clean(D.krName));
+  return p.join(' ');
+}
+function copyBody(){const para=buildParagraph(),info=infoLine();return D.withInfo&&info?`${info}\n${para}`:para}
+
+/* ===== 화면 ===== */
+function renderStepper(){
+  const names=['① 나의 꿈 정하기','② 글 완성하기','③ 제출하기'];
+  $('#stepper').innerHTML=names.map((n,i)=>`<div class="${D.step===i+1?'on':D.step>i+1?'done':''}">${D.step>i+1?'✓ ':''}${n}</div>`).join('');
+}
+function render(){
+  renderStepper();
+  $('#view').innerHTML=D.step===1?viewStep1():D.step===2?viewStep2():viewStep3();
+  if(D.step===1)updateLive1();
+  if(D.step===2)updateEssay();
+  scrollTo({top:0,behavior:'smooth'});
+}
+function bind(id,key,after){const el=$('#'+id);if(!el)return;el.addEventListener('input',()=>{D[key]=el.value;save();after&&after()})}
+
+/* ---- 1단계 ---- */
+function viewStep1(){
+  return `<section class="card">
+    <h2>🌱 1단계 · 나의 꿈 정하기</h2>
+    <p class="muted">아직 꿈이 확실하지 않아도 괜찮아요. 지금 마음이 가는 직업을 골라 보세요.</p>
+    <div class="field"><label>👤 나의 정보 <em class="opt">제출할 때 함께 복사돼요</em></label>
+      <div class="row3">
+        <label>반<input id="iCls" inputmode="numeric" maxlength="2" placeholder="3" value="${esc(D.cls)}"></label>
+        <label>번호<input id="iNum" inputmode="numeric" maxlength="2" placeholder="7" value="${esc(D.num)}"></label>
+        <label>이름<input id="iKr" maxlength="10" placeholder="김민지" value="${esc(D.krName)}"></label>
+        <label>영어 이름<input id="iName" maxlength="30" placeholder="Minji Kim" value="${esc(D.name)}"></label>
+      </div></div>
+    <div class="field"><label>① 진로 희망 (영어) <em class="req">필수</em></label>
+      <input id="iDreamEn" maxlength="40" placeholder="예) a chef, an engineer, a vet" value="${esc(D.dreamEn)}">
+      <small>💡 직업 앞에 a / an을 붙여요. 모음 소리(a, e, i, o, u)로 시작하면 an! (an artist)</small>
+      <div class="chips">${JOBS.map(([e,k])=>`<button class="chip" data-en="${esc(e)}" data-ko="${esc(k)}" onclick="pickJob(this)">${esc(e)}</button>`).join('')}</div></div>
+    <div class="field"><label>② 진로 희망 (한글 뜻) <em class="opt">선택</em></label>
+      <input id="iDreamKo" maxlength="30" placeholder="예) 요리사" value="${esc(D.dreamKo)}"></div>
+    <div class="field"><label>③ 꿈을 가진 목적 (영어) <em class="req">필수</em></label>
+      <div class="to-input"><span>to</span><input id="iPurEn" maxlength="80" placeholder="make people happy with delicious food" value="${esc(D.purposeEn)}"></div>
+      <small>💡 to 다음에는 <b>동사원형</b>! (help, make, teach, save, protect …)</small>
+      <div class="chips">${PURPOSES.map(([e,k])=>`<button class="chip" data-en="${esc(e)}" data-ko="${esc(k)}" onclick="pickPurpose(this)">to ${esc(e)}</button>`).join('')}</div></div>
+    <div class="field"><label>④ 꿈을 가진 목적 (한글 뜻) <em class="opt">선택</em></label>
+      <input id="iPurKo" maxlength="60" placeholder="예) 맛있는 음식으로 사람들을 행복하게 하기 위해서" value="${esc(D.purposeKo)}"></div>
+    <div class="live" id="live1"></div>
+    <div class="btns end"><button class="btn big" onclick="toStep2()">다음 단계: 글 완성하기 ▶</button></div>
+  </section>`;
+}
+function pickJob(b){D.dreamEn=b.dataset.en;D.dreamKo=b.dataset.ko;$('#iDreamEn').value=D.dreamEn;$('#iDreamKo').value=D.dreamKo;save();updateLive1()}
+function pickPurpose(b){D.purposeEn=b.dataset.en;D.purposeKo=b.dataset.ko;$('#iPurEn').value=D.purposeEn;$('#iPurKo').value=D.purposeKo;save();updateLive1()}
+function updateLive1(){
+  const el=$('#live1');if(!el)return;
+  const d=clean(D.dreamEn),p=cleanTo(D.purposeEn);
+  let tip='';
+  if(hasHangul(d)||hasHangul(p))tip='💡 영어 칸에는 영어로 써 볼까요? 한글 뜻은 아래 칸에 써요.';
+  else if(d&&!hasArticle(d))tip='💡 직업 앞에 a 또는 an을 붙여 볼까요?';
+  else if(p&&ingEd(p))tip='💡 to 다음에는 동사원형을 써요! (helping ✗ → help ⭕)';
+  el.innerHTML=(d||p)?`<b>I want to become ${esc(d||'___')} to ${esc(p||'___')}.</b>${(D.dreamKo||D.purposeKo)?`<div class="muted">${esc(koSentence())}</div>`:''}${tip?`<div class="tip">${tip}</div>`:''}`
+    :'<span class="muted">👀 여기에 내 문장이 미리 보여요</span>';
+}
+function toStep2(){
+  if(!clean(D.dreamEn))return toast('진로 희망(영어)을 적어 주세요 🌱');
+  if(!cleanTo(D.purposeEn))return toast('꿈을 가진 목적(영어)을 적어 주세요 🎯');
+  if(hasHangul(D.dreamEn)||hasHangul(D.purposeEn))return toast('영어 칸에는 영어로 써 주세요 😊');
+  if(formCfg()&&(!String(D.cls).trim()||!String(D.num).trim()||!clean(D.krName)))return toast('선생님께 제출하려면 반·번호·이름을 적어 주세요 🙂');
+  D.step=2;save();render();toast('좋아요! 이제 글을 완성해 봐요 ✍️');
+}
+
+/* ---- 2단계 ---- */
+function inp(key,ph,w){return `<input id="e_${key}" maxlength="90" placeholder="${esc(ph)}" value="${esc(D[key])}" ${w?`style="max-width:${w}"`:''} oninput="D['${key}']=this.value;save();updateEssay()">`}
+function chips(list,key){return `<div class="chips">${list.map(v=>`<button class="chip" data-v="${esc(v)}" onclick="fillChip('${key}',this.dataset.v)">${esc(v)}</button>`).join('')}</div>`}
+function fillChip(key,v){D[key]=v;save();const el=$('#e_'+key);if(el){el.value=v;el.focus()}updateEssay()}
+function viewStep2(){
+  return `<section class="card">
+    <h2>✍️ 2단계 · 글 완성하기 <span class="muted" style="font-family:'Gowun Dodum';font-size:.9rem">칸을 채우면 오른쪽에 문단이 만들어져요</span></h2>
+    <div class="guide">
+      <div><b>be interested in + 명사 / -ing</b>I am interested in <u>cooking</u>.<br><span class="ex">~에 관심이 있다</span></div>
+      <div><b>I want to become + 직업 + to + 동사원형</b>I want to become <u>a vet</u> to <u>help sick animals</u>.<br><span class="ex">~하기 위해서 …가 되고 싶다</span></div>
+      <div><b>To become + 직업, I will + 동사원형 ⭐심화</b>To become a vet, I will <u>study science hard</u>.<br><span class="ex">…가 되기 위해서, 나는 ~할 것이다</span></div>
+    </div>
+  </section>
+  <div class="essay-grid">
+    <div>
+      <div class="step"><div class="sh"><span class="num">1</span><span class="t">인사하고 이름 말하기</span></div>
+        <div class="inline-inputs"><span>My name is</span>${inp('name','Minji Kim')}<span>.</span></div></div>
+      <div class="step"><div class="sh"><span class="num">2</span><span class="t">내가 관심 있는 것</span></div>
+        <div class="expr">be interested in ~</div><div class="ex">in 다음에는 명사나 -ing 형태가 와요. (to cook ✗ → cooking ⭕)</div>
+        <div class="inline-inputs"><span>I am interested in</span>${inp('interest','cooking')}<span>.</span></div>${chips(INTERESTS,'interest')}</div>
+      <div class="step"><div class="sh"><span class="num">3</span><span class="t">나의 꿈과 그 목적</span><button class="mini" onclick="D.step=1;save();render()">◀ 1단계에서 고치기</button></div>
+        <div class="expr">I want to become ~ to + 동사원형</div>
+        <div class="inline-inputs"><span>I want to become</span>${inp('dreamEn','a chef','180px')}<span>to</span>${inp('purposeEn','make people happy')}<span>.</span></div></div>
+      <div class="step"><div class="sh"><span class="num adv">4</span><span class="t">꿈을 위해 노력할 일 ⭐심화</span></div>
+        <div class="expr adv">To become ~, I will + 동사원형</div><div class="ex">꿈을 이루려면 무엇을 연습하고 공부할지 써 봐요.</div>
+        <div class="inline-inputs"><span>To become <span id="dreamEcho"></span>, I will</span>${inp('plan1','practice cooking every day')}<span>.</span></div>${chips(PLANS,'plan1')}</div>
+      <div class="step"><div class="sh"><span class="num adv">5</span><span class="t">하나 더! ⭐심화 (선택)</span></div>
+        <div class="expr adv">I will also + 동사원형</div>
+        <div class="inline-inputs"><span>I will also</span>${inp('plan2','read many books about food')}<span>.</span></div>${chips(PLANS2,'plan2')}</div>
+      <div class="step"><div class="sh"><span class="num">6</span><span class="t">마무리 한 문장</span></div>
+        <div class="inline-inputs">${inp('closing','I will do my best!')}</div>${chips(CLOSES,'closing')}</div>
+    </div>
+    <div class="preview"><div class="card" style="margin-top:0">
+      <h3>📝 완성된 나의 문단</h3>
+      <div class="paper" id="out"></div>
+      <div class="muted" id="count" style="margin-top:6px;font-size:.88rem"></div>
+      <div class="tips" id="tips"></div>
+      <div class="btns">
+        <button class="btn mint" onclick="speak(buildParagraph())">🔈 들어보기</button>
+      </div>
+      <div class="btns end"><button class="btn big" onclick="toStep3()">다 썼어요! ▶</button></div>
+    </div></div>
+  </div>`;
+}
+function tipsList(){
+  const t=[];
+  if(['name','interest','dreamEn','purposeEn','plan1','plan2','closing'].some(k=>hasHangul(D[k])))t.push('💡 영어 칸에는 영어로 써 볼까요?');
+  if(/^to\s/i.test(String(D.interest||'').trim()))t.push('💡 be interested in 다음에는 to가 아니라 명사나 -ing! (to draw ✗ → drawing ⭕)');
+  if(D.dreamEn&&!hasArticle(D.dreamEn))t.push('💡 직업 앞에 a 또는 an을 붙여 볼까요? (a chef, an artist)');
+  if(D.purposeEn&&ingEd(cleanTo(D.purposeEn)))t.push('💡 목적을 나타내는 to 다음에는 동사원형! (helping ✗ → help ⭕)');
+  if(D.plan1&&(ingEd(D.plan1)||/^to\s/i.test(String(D.plan1).trim())))t.push('💡 I will 다음에는 바로 동사원형! (practicing ✗ → practice ⭕)');
+  if(!clean(D.interest))t.push('🌱 2번 “I am interested in …”도 채워 볼까요?');
+  if(!clean(D.plan1))t.push('⭐ 4번 심화 문장 “To become ~, I will …”에 도전해 봐요!');
+  return t;
+}
+function updateEssay(){
+  const out=$('#out');if(!out)return;
+  const p=buildParagraph();
+  out.textContent=p||'✏️ 왼쪽 칸을 채우면 여기에 문단이 만들어져요.';out.style.color=p?'':'var(--muted)';
+  $('#dreamEcho').textContent=clean(D.dreamEn)||'___';
+  const w=p?p.split(/\s+/).length:0;$('#count').textContent=w?`단어 ${w}개 · 문장 ${p.split(/(?<=[.!?])\s+/).length}개`:'';
+  const t=tipsList();
+  $('#tips').innerHTML=t.length?t.map(x=>`<div>${x}</div>`).join(''):'<div class="good">👍 문장이 아주 멋져요! [다 썼어요!]를 눌러 주세요.</div>';
+}
+function toStep3(){
+  if(!clean(D.dreamEn)||!cleanTo(D.purposeEn))return toast('3번 꿈과 목적은 꼭 채워 주세요 🌱');
+  if(!clean(D.plan1))return toast('4번 심화 문장 “To become ~, I will …”까지 써 볼까요? ⭐');
+  D.step=3;save();render();fanfare();celebrate();
+}
+
+/* ---- 3단계 ---- */
+function viewStep3(){
+  const p=buildParagraph(),info=infoLine();
+  return `<section class="card done">
+    <div style="font-size:3rem">🎉</div>
+    <h2>멋진 글이 완성됐어요!</h2>
+    <div class="submit-guide">📌 아래 글을 복사해서, <b>선생님이 구글 클래스룸 과제로 낸 구글 문서</b>에 붙여 넣어 주세요.<br><span>글을 한 번 누르면 전체가 선택돼요 → 복사(Ctrl+C / 길게 눌러 복사) → 구글 문서에 붙여 넣기(Ctrl+V)</span></div>
+    ${formCfg()?submitBox():''}
+    <div class="badge-row"><span class="badge">🌟 ${esc(clean(D.dreamEn))}</span><span class="badge">🎯 to ${esc(cleanTo(D.purposeEn))}</span><span class="badge">📝 단어 ${p.split(/\s+/).length}개</span></div>
+    <div class="paper final" id="finalOut">${esc(copyBody())}</div>
+    <label class="check" style="justify-content:center"><input type="checkbox" ${D.withInfo?'checked':''} onchange="D.withInfo=this.checked;save();$('#finalOut').textContent=copyBody()"> 맨 위에 반·번호·이름 함께 보이기${info?'':' <span class="muted">(1단계에서 적을 수 있어요)</span>'}</label>
+    <div class="btns" style="justify-content:center">
+      <button class="btn mint" onclick="speak(buildParagraph())">🔈 들어보기</button>
+      <button class="btn soft" onclick="D.step=2;save();render()">✏️ 다시 고치기</button>
+    </div>
+    <div class="box-info" style="margin-top:18px">💛 꿈을 향해 한 걸음 내디딘 것만으로도 정말 멋져요. 오늘 쓴 계획을 하나씩 실천해 봐요!</div>
+    <div class="btns" style="justify-content:center"><button class="mini" onclick="resetAll()">🔄 처음부터 새로 쓰기</button></div>
+  </section>`;
+}
+
+/* ===== 선생님께 제출 (구글 설문지) ===== */
+const FIELD_KEYS={'반':'cls','번호':'num','이름':'name','문장':'sentence','한글':'ko','문단':'para'};
+function formCfg(){if(EMBED_FORM)return EMBED_FORM;try{return JSON.parse(localStorage.getItem('dreamWriting.form')||'null')}catch(e){return null}}
+function submitBox(){
+  const sent=D.submittedAt;
+  return `<div class="submit-box ${sent?'sent':''}">
+    <b>📨 ① 먼저 선생님께 내 꿈 문장을 제출해요</b><br>
+    <span class="sentence-big">${esc(enSentence())}</span>${koSentence()?`<div class="muted">${esc(koSentence())}</div>`:''}
+    <div class="btns" style="justify-content:center;margin-top:8px">
+      <button class="btn" id="sendBtn" onclick="submitToTeacher()">${sent?'🔁 고친 내용으로 다시 제출':'📨 선생님께 제출하기'}</button></div>
+    ${sent?`<div class="ok-txt" style="margin-top:8px">✅ 제출했어요! (${new Date(sent).toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'})})</div>`:''}
+  </div>`;
+}
+function formPayload(cfg,v){const body=new URLSearchParams();Object.entries(cfg.entries).forEach(([f,id])=>{if(v[f]!==undefined)body.append('entry.'+id,v[f])});return body}
+function studentValues(){return {cls:String(D.cls).trim(),num:String(D.num).trim(),name:clean(D.krName),sentence:enSentence(),ko:koSentence(),para:buildParagraph()}}
+async function postForm(cfg,v){
+  await fetch(`https://docs.google.com/forms/d/e/${cfg.formId}/formResponse`,{method:'POST',mode:'no-cors',body:formPayload(cfg,v)});
+}
+async function submitToTeacher(){
+  const cfg=formCfg();if(!cfg)return;
+  if(!String(D.cls).trim()||!String(D.num).trim()||!clean(D.krName)){toast('1단계에서 반·번호·이름을 적어 주세요 🙂');return}
+  const b=$('#sendBtn');if(b){b.disabled=true;b.textContent='보내는 중…'}
+  try{await postForm(cfg,studentValues());D.submittedAt=Date.now();save();render();tone(1046.5,0,.15);tone(1568,.08,.2);burst(60,innerWidth/2,innerHeight*.4);toast('선생님께 제출했어요! 📨')}
+  catch(e){if(b){b.disabled=false;b.textContent='📨 선생님께 제출하기'}toast('제출하지 못했어요. 인터넷 연결을 확인하고 다시 눌러 주세요 🙏')}
+}
+
+/* ===== 선생님 설정 화면 ===== */
+let teacherOpen=false;
+function openTeacher(){teacherOpen=true;render()}
+function closeTeacher(){teacherOpen=false;render()}
+function parsePrefill(url){
+  const m=String(url).match(/forms\/d\/e\/([A-Za-z0-9_-]+)/);if(!m)return {err:'설문지 주소를 찾지 못했어요. “미리 채워진 링크”를 붙여 넣어 주세요.'};
+  let q;try{q=new URL(String(url).trim()).searchParams}catch(e){return {err:'주소 형식이 올바르지 않아요.'}}
+  const entries={};
+  for(const [k,v] of q.entries()){const mm=k.match(/^entry\.(\d+)$/);if(!mm)continue;const f=FIELD_KEYS[String(v).trim()];if(f)entries[f]=mm[1]}
+  const miss=['반','번호','이름','문장'].filter(w=>!entries[FIELD_KEYS[w]]);
+  if(miss.length)return {err:`미리 채운 답에서 ${miss.map(w=>'“'+w+'”').join(', ')}을(를) 찾지 못했어요. 각 질문에 그 낱말을 그대로 적고 링크를 다시 만들어 주세요.`};
+  return {cfg:{formId:m[1],entries}};
+}
+function viewTeacher(){
+  const cfg=formCfg();
+  const names={cls:'반',num:'번호',name:'이름',sentence:'꿈 문장 (영어)',ko:'꿈 문장 (한글 뜻)',para:'완성 문단'};
+  return `<section class="card t-panel">
+    <h2>👩‍🏫 선생님 설정 · 학생 답 모으기</h2>
+    <p class="muted">학생이 3단계에서 <b>📨 선생님께 제출하기</b>를 누르면, 반·번호·이름과 “I want to become ~ to ~” 문장이 선생님 구글 설문지 응답으로 들어가요. 응답은 엑셀로 내려받을 수 있어요.</p>
+    <div class="box-info" style="margin-bottom:10px">현재 상태: ${cfg?`<b class="ok-txt">✅ 설문지 연결됨</b>${EMBED_FORM?' (이 파일에 저장됨)':' (이 기기에서만 — 아래 ③에서 파일을 내려받아 학생에게 나눠 주세요)'}`:'<b class="no-txt">아직 연결 안 됨</b> — 학생 화면에는 구글 문서 붙여 넣기 안내만 보여요.'}
+      ${cfg?`<div class="map">${Object.entries(cfg.entries).map(([f,id])=>`<span>${names[f]}</span><span class="muted">entry.${id}</span>`).join('')}</div>`:''}</div>
+    <h3>① 구글 설문지 만들기 (한 번만)</h3>
+    <ol>
+      <li><a href="https://docs.google.com/forms/create" target="_blank" rel="noopener">새 구글 설문지</a>를 만들고 <b>단답형</b> 질문 4개를 이 순서로 넣어요: <span class="code">반</span> <span class="code">번호</span> <span class="code">이름</span> <span class="code">꿈 문장</span><br>
+        <span class="muted">(선택) 단답형 <span class="code">한글 뜻</span>, 장문형 <span class="code">완성 문단</span>도 추가할 수 있어요.</span></li>
+      <li><b>설정 → 응답</b>에서 <b>이메일 주소 수집: 수집 안함</b>, <b>로그인 필요 / 학교 사용자로 제한: 끄기</b>, <b>응답 횟수 1회로 제한: 끄기</b>로 맞춰요. (켜져 있으면 제출이 들어오지 않아요)</li>
+      <li>오른쪽 위 ⋮ → <b>미리 채워진 링크 가져오기</b> → 각 칸에 답을 <b>반 / 번호 / 이름 / 문장</b> (선택 질문은 <b>한글</b> / <b>문단</b>) 이라고 그대로 적고 → <b>링크 가져오기 → 링크 복사</b></li>
+    </ol>
+    <h3>② 복사한 링크 붙여 넣기</h3>
+    <input id="prefill" placeholder="https://docs.google.com/forms/d/e/.../viewform?usp=pp_url&entry.123=반&...">
+    <div class="btns"><button class="btn" onclick="connectForm()">🔗 연결하기</button>${cfg?'<button class="btn soft" onclick="testSubmit()">🧪 시험 응답 보내기</button>':''}</div>
+    <p class="muted" style="font-size:.9rem">🧪 시험 응답을 보낸 뒤 설문지 <b>응답</b> 탭에 “0반 0번 테스트”가 보이면 성공이에요. (시험 응답은 나중에 지워 주세요)</p>
+    <h3>③ 학생에게 나눠 줄 파일 만들기</h3>
+    <p class="muted">설문지 연결 정보가 들어간 파일을 내려받아 구글 클래스룸 과제에 첨부해 주세요. 학생은 이 파일로 쓰고 제출해요.</p>
+    <div class="btns"><button class="btn mint" ${cfg?'':'disabled'} onclick="downloadConfigured()">📥 학생용 파일 내려받기</button></div>
+    <h3>④ 엑셀로 내려받기</h3>
+    <ol>
+      <li>설문지 <b>응답</b> 탭 → <b>Sheets에 연결</b>(초록 아이콘) → 새 스프레드시트 만들기</li>
+      <li>열린 구글 시트에서 <b>파일 → 다운로드 → Microsoft Excel(.xlsx)</b></li>
+    </ol>
+    <p class="muted" style="font-size:.9rem">💡 같은 학생이 고쳐서 다시 제출하면 줄이 하나 더 생겨요. 맨 아래(가장 최근) 줄이 최종 답이에요.</p>
+    <div class="btns end"><button class="btn soft" onclick="closeTeacher()">◀ 학생 화면으로 돌아가기</button></div>
+  </section>`;
+}
+function connectForm(){
+  const r=parsePrefill($('#prefill').value);if(r.err)return toast(r.err);
+  try{localStorage.setItem('dreamWriting.form',JSON.stringify(r.cfg))}catch(e){}
+  render();toast('설문지를 연결했어요! 🧪 시험 응답으로 확인해 보세요 🔗');
+}
+async function testSubmit(){
+  const cfg=formCfg();if(!cfg)return;
+  try{await postForm(cfg,{cls:'0',num:'0',name:'테스트',sentence:'I want to become a teacher to help students.',ko:'학생들을 돕기 위해서 선생님이 되고 싶다.',para:'(시험 응답)'});toast('시험 응답을 보냈어요. 설문지 응답 탭을 확인해 보세요 🧪')}
+  catch(e){toast('보내지 못했어요. 인터넷 연결을 확인해 주세요')}
+}
+function downloadConfigured(){
+  const cfg=formCfg();if(!cfg)return;
+  const html=PRISTINE.replace(/\/\*FORM_CONFIG_START\*\/[\s\S]*?\/\*FORM_CONFIG_END\*\//,'/*FORM_CONFIG_START*/const EMBED_FORM='+JSON.stringify(cfg)+';/*FORM_CONFIG_END*/');
+  const b=new Blob([html],{type:'text/html;charset=utf-8'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='나의꿈_영어글쓰기.html';document.body.appendChild(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(a.href),1500);toast('학생용 파일을 내려받았어요! 클래스룸 과제에 첨부해 주세요 📥');
+}
+
+/* ===== 복사 / 초기화 ===== */
+function copyText(t){
+  if(navigator.clipboard&&window.isSecureContext)return navigator.clipboard.writeText(t);
+  return new Promise((res,rej)=>{const ta=document.createElement('textarea');ta.value=t;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();
+    try{document.execCommand('copy')?res():rej()}catch(e){rej(e)}ta.remove()});
+}
+function copyNow(){
+  if(!buildParagraph())return toast('먼저 문장을 채워 주세요 ✏️');
+  const body=D.step===3?copyBody():buildParagraph();
+  copyText(body).then(()=>{toast('복사했어요! 제출 칸에 붙여 넣어 주세요 📋');tone(1046.5,0,.15);tone(1568,.08,.2)},()=>toast('복사가 안 됐어요. 글을 길게 눌러 직접 복사해 주세요'));
+}
+function resetAll(){
+  if(!confirm('지금까지 쓴 내용을 모두 지우고 처음부터 쓸까요?'))return;
+  D={step:1,cls:'',num:'',krName:'',dreamEn:'',dreamKo:'',purposeEn:'',purposeKo:'',name:'',interest:'',plan1:'',plan2:'',closing:'',withInfo:true};save();render();
+}
+
+/* 1단계 입력 연결 (render 뒤에 매번 연결) */
+const _render=render;
+render=function(){if(teacherOpen){$('#stepper').innerHTML='';$('#view').innerHTML=viewTeacher();scrollTo({top:0});return}_render();if(D.step===1){bind('iCls','cls');bind('iNum','num');bind('iKr','krName');bind('iName','name');
+  bind('iDreamEn','dreamEn',updateLive1);bind('iDreamKo','dreamKo',updateLive1);bind('iPurEn','purposeEn',updateLive1);bind('iPurKo','purposeKo',updateLive1)}};
+render();
+</script>
+</body>
+</html>
