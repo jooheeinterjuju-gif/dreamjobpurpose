@@ -1,0 +1,9 @@
+{
+  "name": "dream-writing",
+  "version": "2.0.0",
+  "private": true,
+  "description": "나의 꿈 영어 글쓰기 — 관리자 단계 공유용",
+  "dependencies": {
+    "@netlify/blobs": "^10.0.0"
+  }
+}
